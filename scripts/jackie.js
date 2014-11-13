@@ -11,7 +11,9 @@
 //   look at (this|that|it) - "look at that" guy
 
 module.exports = function(robot) {
-  robot.hear(/jackiesummervill/i, function(msg) {
-    msg.send('Simmer down now, Jax.');
+  robot.hear(/.+/i, function(msg) {
+    if (msg.message.user.name.toLowerCase() === 'jackiesummervill') {
+      msg.send('Simmer down now, Jax.');
+    }
   });
 };
