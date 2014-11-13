@@ -12,8 +12,8 @@
 
 module.exports = function(robot) {
   robot.hear(/.+/i, function(msg) {
-    if (msg.message.user.name.toLowerCase() === 'jackiesummervill') {
-      msg.send('Simmer down now, Jax.');
+    if (msg.message.user.name.toLowerCase() === 'sethetter') {
+      msg.send('testttttt');
     }
   });
 };
