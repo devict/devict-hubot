@@ -17,7 +17,13 @@ module.exports = function(robot) {
       'https://cldup.com/pI8HiONY_L.png',
       'https://cldup.com/0HtaPe3xLB.jpg',
       'https://cldup.com/N6CwJUnci1.png',
-      'https://cldup.com/zEHrnpcqRm.jpg'
+      'https://cldup.com/zEHrnpcqRm.jpg',
+      'https://cldup.com/sGL_oezYfu.png',
+      'https://cldup.com/RC1eGHtnR9.png',
+      'https://cldup.com/nzwLw1PMJm.png',
+      'https://cldup.com/krWEF4wyaa.png',
+      'https://cldup.com/XeM2T-lfKr.png',
+      'https://cldup.com/IUVog8P4AV.png'
     ];
 
     msg.send(images[Math.floor(Math.random() * images.length)]);
