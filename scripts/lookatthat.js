@@ -16,7 +16,8 @@ module.exports = function(robot) {
       'http://cl.ly/image/2S2Y3B36443T/Screen%20Shot%202014-09-12%20at%2010.01.24%20PM.png',
       'https://cldup.com/pI8HiONY_L.png',
       'https://cldup.com/0HtaPe3xLB.jpg',
-      'https://cldup.com/N6CwJUnci1.png'
+      'https://cldup.com/N6CwJUnci1.png',
+      'https://cldup.com/zEHrnpcqRm.jpg'
     ];
 
     msg.send(images[Math.floor(Math.random() * images.length)]);
