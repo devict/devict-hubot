@@ -12,6 +12,6 @@
 
 module.exports = function(robot) {
   robot.respond(/you (fail|failed)/i, function(msg) {
-    msg.emote('commits seppuku.. HARRRGGHHNNNNN');
+    msg.send('/me commits seppuku.. HARRRGGHHNNNNN');
   });
 };
