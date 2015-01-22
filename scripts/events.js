@@ -30,7 +30,7 @@ module.exports = function(robot) {
       var response = JSON.parse(body);
       var eventStr = '';
       response.results.forEach(function(event) {
-        var dateStr = (new Date(event.time)).toLocaleString('en-us', {timeZone:'America/Chicago', timeZoneName:'Short'});
+        var dateStr = moment(event.time).tz('America/Chicago').format('dddd, MMM D, YYYY @ h:mm a');
         eventStr +=  dateStr + ' :: ' + event.name + ' @ ' + event.venue.name + '\n';
       });
       msg.send(eventStr.trim())
