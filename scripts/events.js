@@ -33,11 +33,12 @@ module.exports = function(robot) {
       }
 
       var response = JSON.parse(body)
-      var eventStr = ''
+      var eventStr = '```\n'
       response.results.forEach(function(event) {
-        var dateStr = moment.tz(event.time, 'America/Chicago').format('dddd, MMM D, YYYY @ h:mm a')
+        var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM D @ hh:mm a')
         eventStr +=  dateStr + ' :: ' + event.name + ' @ ' + event.venue.name + '\n'
       })
+      eventStr += '```'
       msg.send(eventStr.trim())
     })
   })
