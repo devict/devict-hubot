@@ -13,7 +13,7 @@
 // Commands:
 //   hubot events - Print a list of upcoming devICT events
 
-var moment = require('moment')
+var moment = require('moment-timezone')
 
 module.exports = function(robot) {
   robot.respond(/events/i, function(msg) {
@@ -35,7 +35,7 @@ module.exports = function(robot) {
       var response = JSON.parse(body)
       var eventStr = ''
       response.results.forEach(function(event) {
-        var dateStr = moment(event.time).tz('America/Chicago').format('dddd, MMM D, YYYY @ h:mm a')
+        var dateStr = moment.tz(event.time, 'America/Chicago').format('dddd, MMM D, YYYY @ h:mm a')
         eventStr +=  dateStr + ' :: ' + event.name + ' @ ' + event.venue.name + '\n'
       })
       msg.send(eventStr.trim())
