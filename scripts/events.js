@@ -38,8 +38,9 @@ module.exports = function(robot) {
         var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM D @ hh:mm a')
         eventStr +=  dateStr + ' :: ' + event.name + ' @ ' + event.venue.name + '\n'
       })
+      eventStr.trim()
       eventStr += '```'
-      msg.send(eventStr.trim())
+      msg.send(eventStr)
     })
   })
 }
