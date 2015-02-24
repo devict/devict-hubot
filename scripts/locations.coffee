@@ -50,6 +50,8 @@ module.exports = (robot) ->
     locationgroup = msg.match[3]
     locations.add locationgroup, locationname
 
+    msg.send "#{locationname} saved in #{locationgroup} collection."
+
     if locationname.toLowerCase() is "nandos"
       msg.send "Nom peri peri. My fav."
 
