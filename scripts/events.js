@@ -5,42 +5,84 @@
 //   None
 //
 // Configuration:
-//   The API method is using a signed request from Meetup so it's safe to
-//   share/reuse. If this API key ever becomes invalid we will have to
-//   regenerate it through
+//   The API methods are using signed requests from Meetup so they're safe to
+//   share/reuse. If an API key ever becomes invalid we can regenerate it at
 //   https://secure.meetup.com/meetup_api/console/?path=/2/events
 //
 // Commands:
 //   hubot events - Print a list of upcoming devICT events
 
 var moment = require('moment-timezone')
+var Promise = require('es6-promise').Promise
+var AsciiTable = require('ascii-table')
+
+var events = []
+events.add = function(group, title, time, location) {
+  this.push({
+    group: group,
+    title: title,
+    time: time,
+    location: location,
+  })
+}
+
+events.sortTimeAscending = function() {
+  this.sort(function(a, b) { return a.time - b.time })
+}
+
+events.asTableString = function() {
+  var table = new AsciiTable()
+  table.setHeading('When', 'Who', 'What', 'Where')
+
+  this.forEach(function(event) {
+    var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM DD @ hh:mm a')
+    table.addRow(dateStr, event.group, event.title, event.location)
+  })
+
+  return '```\n' + table.toString() + '\n```'
+}
 
 module.exports = function(robot) {
   robot.respond(/events/i, function(msg) {
-    var url = 'http://api.meetup.com/2/events?status=upcoming' +
+    var devictURL = 'http://api.meetup.com/2/events?status=upcoming' +
       '&order=time&limited_events=False&group_urlname=devict' +
       '&desc=false&offset=0&photo-host=public&format=json&page=20' +
       '&fields=&sig_id=73273692&sig=9cdd3af6b5a26eb664fe5abab6e5cf7bfaaf090e'
 
-    msg.http(url).get()(function(err, res, body) {
-      if (err) {
-        msg.send('Error making request: ' + err)
-        return
-      }
-      if (200 != res.statusCode) {
-        msg.send('Request returned status code: ' + res.statusCode)
-        return
-      }
+    var wwcURL = 'https://api.meetup.com/2/events?offset=0&format=json' +
+      '&limited_events=False&group_urlname=WWCWichita&photo-host=public' +
+      '&page=20&fields=&order=time&status=upcoming&desc=false' +
+      '&sig_id=73273692&sig=4111c5adf6695f954bd7ae7dfd86896970b451f6'
 
-      var response = JSON.parse(body)
-      var eventStr = '```\n'
-      response.results.forEach(function(event) {
-        var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM D @ hh:mm a')
-        eventStr +=  dateStr + ' :: ' + event.name + ' @ ' + event.venue.name + '\n'
+    var meetupRequest = function(group, url) {
+      return new Promise(function(resolve, reject) {
+        msg.http(url).get()(function(err, res, body) {
+          if (err) {
+            return reject('Error making request: ' + err)
+          }
+          if (200 != res.statusCode) {
+            return reject('Request returned status code: ' + res.statusCode)
+          }
+
+          JSON.parse(body).results.forEach(function(event) {
+            events.add(group, event.name, event.time, event.venue.name)
+          })
+
+          resolve()
+        })
       })
-      eventStr.trim()
-      eventStr += '```'
-      msg.send(eventStr)
+    }
+
+    Promise.all([
+      meetupRequest("WWC", wwcURL),
+      meetupRequest("devICT", devictURL)
+    ])
+    .then(function(results) {
+      events.sortTimeAscending()
+      msg.send(events.asTableString())
+    })
+    .catch(function(err) {
+      msg.send(err)
     })
   })
 }

@@ -5,6 +5,8 @@
   "author": "Seth Etter <sethetter@gmail.com>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "ascii-table": "0.0.8",
+    "es6-promise": "^2.0.1",
     "hubot": "^2.9.3",
     "hubot-diagnostics": "0.0.1",
     "hubot-fliptable": "^1.2.0",
