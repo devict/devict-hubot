@@ -16,9 +16,9 @@ var moment = require('moment-timezone')
 var Promise = require('es6-promise').Promise
 var AsciiTable = require('ascii-table')
 
-var events = []
-events.add = function(group, title, time, location) {
-  this.push({
+var eventMgr = {events: []}
+eventMgr.add = function(group, title, time, location) {
+  this.events.push({
     group: group,
     title: title,
     time: time,
@@ -26,20 +26,24 @@ events.add = function(group, title, time, location) {
   })
 }
 
-events.sortTimeAscending = function() {
-  this.sort(function(a, b) { return a.time - b.time })
+eventMgr.sortTimeAscending = function() {
+  this.events.sort(function(a, b) { return a.time - b.time })
 }
 
-events.asTableString = function() {
-  var table = new AsciiTable()
+eventMgr.asTableString = function() {
+  var table = new AsciiTable('Upcoming Events')
   table.setHeading('When', 'Who', 'What', 'Where')
 
-  this.forEach(function(event) {
+  this.events.forEach(function(event) {
     var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM DD @ hh:mm a')
     table.addRow(dateStr, event.group, event.title, event.location)
   })
 
   return '```\n' + table.toString() + '\n```'
+}
+
+eventMgr.reset = function() {
+  this.events = []
 }
 
 module.exports = function(robot) {
@@ -65,7 +69,7 @@ module.exports = function(robot) {
           }
 
           JSON.parse(body).results.forEach(function(event) {
-            events.add(group, event.name, event.time, event.venue.name)
+            eventMgr.add(group, event.name, event.time, event.venue.name)
           })
 
           resolve()
@@ -74,12 +78,13 @@ module.exports = function(robot) {
     }
 
     Promise.all([
-      meetupRequest("WWC", wwcURL),
-      meetupRequest("devICT", devictURL)
+      meetupRequest('WWC', wwcURL),
+      meetupRequest('devICT', devictURL)
     ])
     .then(function(results) {
-      events.sortTimeAscending()
-      msg.send(events.asTableString())
+      eventMgr.sortTimeAscending()
+      msg.send(eventMgr.asTableString())
+      eventMgr.reset()
     })
     .catch(function(err) {
       msg.send(err)
