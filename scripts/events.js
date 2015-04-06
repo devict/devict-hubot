@@ -15,9 +15,15 @@
 var moment = require('moment-timezone')
 var Promise = require('es6-promise').Promise
 var AsciiTable = require('ascii-table')
+var _ = require('lodash')
 
 var eventMgr = {events: []}
 eventMgr.add = function(group, title, time, location) {
+  var duplicate = _.find(this.events, function(event) { return event.title === title && event.time === time })
+
+  if (typeof duplicate !== 'undefined') return
+  if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return;
+
   this.events.push({
     group: group,
     title: title,
@@ -36,6 +42,7 @@ eventMgr.asTableString = function() {
 
   this.events.forEach(function(event) {
     var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM DD @ hh:mm a')
+    console.log(table.rows);
     table.addRow(dateStr, event.group, event.title, event.location)
   })
 
@@ -58,6 +65,11 @@ module.exports = function(robot) {
       '&page=20&fields=&order=time&status=upcoming&desc=false' +
       '&sig_id=73273692&sig=4111c5adf6695f954bd7ae7dfd86896970b451f6'
 
+    var makeictURL = 'https://api.meetup.com/2/events?offset=0&format=json&' +
+      'limited_events=False&group_urlname=MakeICT&photo-host=public' +
+      '&page=20&fields=&order=time&desc=false&status=upcoming&' +
+      'sig_id=15434981&sig=5da76a33f42c53199e5d7f97a3ed5340f3cc2e61'
+
     var meetupRequest = function(group, url) {
       return new Promise(function(resolve, reject) {
         msg.http(url).get()(function(err, res, body) {
@@ -79,7 +91,8 @@ module.exports = function(robot) {
 
     Promise.all([
       meetupRequest('WWC', wwcURL),
-      meetupRequest('devICT', devictURL)
+      meetupRequest('devICT', devictURL),
+      meetupRequest('MakeICT', makeictURL)
     ])
     .then(function(results) {
       eventMgr.sortTimeAscending()
