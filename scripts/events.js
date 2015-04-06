@@ -19,9 +19,6 @@ var _ = require('lodash')
 
 var eventMgr = {events: []}
 eventMgr.add = function(group, title, time, location) {
-  var duplicate = _.find(this.events, function(event) { return event.title === title && event.time === time })
-
-  if (typeof duplicate !== 'undefined') return
   if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return;
 
   this.events.push({
