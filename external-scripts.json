@@ -12,5 +12,6 @@
   "hubot-youtube",
   "hubot-fliptable",
   "hubot-plusplus",
-  "hubot-redis-brain"
+  "hubot-redis-brain",
+  "hubot-sentimental"
 ]
