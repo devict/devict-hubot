@@ -38,8 +38,7 @@ eventMgr.asTableString = function() {
   table.setHeading('When', 'Who', 'What', 'Where')
 
   this.events.forEach(function(event) {
-    var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd, MMM DD @ hh:mm a')
-    console.log(table.rows);
+    var dateStr = moment.tz(event.time, 'America/Chicago').format('MM/DD, hh:mma')
     table.addRow(dateStr, event.group, event.title, event.location)
   })
 
