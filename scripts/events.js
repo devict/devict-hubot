@@ -21,6 +21,9 @@ var eventMgr = {events: []}
 eventMgr.add = function(group, title, time, location) {
   if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return;
 
+  if (title.length > 22) title = title.substr(0, 20) + '..';
+  if (location.length > 22) location = location.substr(0, 20) + '..';
+
   this.events.push({
     group: group,
     title: title,
@@ -38,7 +41,7 @@ eventMgr.asTableString = function() {
   table.setHeading('When', 'Who', 'What', 'Where')
 
   this.events.forEach(function(event) {
-    var dateStr = moment.tz(event.time, 'America/Chicago').format('MM/DD, hh:mma')
+    var dateStr = moment.tz(event.time, 'America/Chicago').format('MM/DD hh:mma')
     table.addRow(dateStr, event.group, event.title, event.location)
   })
 
