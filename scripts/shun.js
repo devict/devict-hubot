@@ -26,12 +26,13 @@ module.exports = function(robot) {
             msg.send('shunning of ' + name + ' complete, please reboot to apply.');
         }, 1000);
     };
-    robot.hear(/^(shun)(\s)([\w'@.-:]*)\s*(?:\s+(?:for|because|cause|cuz)\s+(.+))?$/i, function(msg) {
+    robot.hear(/^shun\s((?:(?!for|because|cause|cuz).)*)(?:\s+(?:for|because|cause|cuz)\s+(.+))?$/i, function(msg) {
         var ref = msg.match;
-        var name = ref[3];
+        console.log(ref);
+        var name = ref[1];
         var reason = 'raisins';
-        if (ref[5] !== undefined) {
-            reason = ref[5];
+        if (ref[2] !== undefined) {
+            reason = ref[2];
         }
         shunPeople(msg, name, reason);
     });
