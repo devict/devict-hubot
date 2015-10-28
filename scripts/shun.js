@@ -9,10 +9,11 @@
 //
 // Commands:
 //   shun <name> - shun jimrice
+//   shun <name> (for|because|cause|cuz) <reason>
 
 module.exports = function(robot) {
-    var shunPeople = function(msg, name, reason) {
-        msg.send('Commencing shunning of ' + name + ' for ' + reason + '...');
+    var shunPeople = function(msg, name, conjunctionWord, reason) {
+        msg.send('Commencing shunning of ' + name + ' ' + conjunctionWord + ' ' + reason + '...');
         setTimeout(function() {
             msg.send('3...');
         }, 250);
@@ -26,14 +27,17 @@ module.exports = function(robot) {
             msg.send('shunning of ' + name + ' complete, please reboot to apply.');
         }, 1000);
     };
-    robot.hear(/^shun\s((?:(?!for|because|cause|cuz).)*)(?:\s+(?:for|because|cause|cuz)\s+(.+))?$/i, function(msg) {
+    robot.hear(/^shun\s((?:(?!for|because|cause|cuz).)*)(?:\s+(for|because|cause|cuz)\s+(.+))?$/i, function(msg) {
         var ref = msg.match;
-        console.log(ref);
         var name = ref[1];
-        var reason = 'raisins';
+        var conjunctionWord = 'for';
         if (ref[2] !== undefined) {
-            reason = ref[2];
+            conjunctionWord = ref[2];
         }
-        shunPeople(msg, name, reason);
+        var reason = 'raisins';
+        if (ref[3] !== undefined) {
+            reason = ref[3];
+        }
+        shunPeople(msg, name, conjunctionWord, reason);
     });
 };
