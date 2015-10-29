@@ -13,7 +13,7 @@
 module.exports = (robot) ->
   robot.respond /roll for (.+)/i, (msg) ->
     number = Math.floor(Math.random() * 20)+1
-    rolled_for = msg.match[0]
+    rolled_for = msg.match[1]
     username = msg.message.user.name
 
     if number == 20
