@@ -14,19 +14,19 @@
 module.exports = (robot) ->
   robot.respond /roll for (.+)/i, (msg) ->
     number = roll_a_die(20)
-    rolled_for = msg.match[1]
+    reason = msg.match[1]
     username = msg.message.user.name
 
     if number == 20
-      msg.send("#{username} rolled a NAT 20 for #{rolled_for}!!!")
+      msg.send("#{username} rolled a NAT 20 for #{reason}!!!")
     else
-      msg.send("#{username} rolled a #{number} for #{rolled_for}.")
+      msg.send("#{username} rolled a #{number} for #{reason}.")
 
   robot.respond /roll (.+)d(.+) for (.+)/i, (msg) ->
     total = 0
     number_of_dice = parseInt(msg.match[1])
     number_of_sides = parseInt(msg.match[2])
-    rolled_for = msg.match[3]
+    reason = msg.match[3]
     username = msg.message.user.name
 
     while number_of_dice != 0
@@ -35,7 +35,7 @@ module.exports = (robot) ->
       msg.send("#{username} rolls 1 d#{number_of_sides} for #{the_roll}")
       number_of_dice--
 
-    msg.send("#{username} rolled a total of #{total}")  
+    msg.send("#{username} rolled a total of #{total} for #{reason}")
 
 
 
