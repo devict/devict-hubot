@@ -13,8 +13,9 @@
 module.exports = (robot) ->
   robot.respond /roll for (.+)/i, (msg) ->
     number = Math.floor(Math.random() * 20)+1
-    rolled_for = msg[0]
+    rolled_for = msg.match[0]
     username = msg.message.user.name
+
     if number == 20
       msg.send(username + " rolled a NAT 20 for " + rolled_for + "!!!")
     else
