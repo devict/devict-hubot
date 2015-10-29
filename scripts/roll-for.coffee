@@ -12,7 +12,7 @@
 
 module.exports = (robot) ->
   robot.respond /roll for (.+)/i, (msg) ->
-    number = Math.floor(Math.random() * 20)+1
+    number = rollDie(20)
     rolled_for = msg.match[1]
     username = msg.message.user.name
 
@@ -20,3 +20,6 @@ module.exports = (robot) ->
       msg.send(username + " rolled a NAT 20 for " + rolled_for + "!!!")
     else
       msg.send(username + " rolled a " + number + " for " + rolled_for + ".")
+
+  rollDie = (sides) ->
+    Math.floor(Math.random() * parseInt(sides))+1
