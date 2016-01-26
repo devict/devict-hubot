@@ -85,7 +85,8 @@ module.exports = function(robot) {
           }
 
           JSON.parse(body).results.forEach(function(event) {
-            eventMgr.add(group, event.name, event.time, event.venue.name)
+            var venue = (event.venue === undefined) ? '' : event.venue.name
+            eventMgr.add(group, event.name, event.time, venue)
           })
 
           resolve()
