@@ -14,10 +14,13 @@
 //	 bot hardwick show every n: changes hardwick_n interval as specified
 
 module.exports = function(robot) {
+	hardwick_n_default = 100;
+	hardwick_n_minimum = 50;
+
 	robot.on("plus-one", function(plusone) {
-		// check brain for n, initialize to 25 if not present (we don't want to see TOO much Hardwick)
+		// check brain for n, initialize to hardwick_n_default if not present (we don't want to see TOO much Hardwick)
 		if (robot.brain.get('hardwick_n') === null) {
-			hardwick_n = 25;
+			hardwick_n = hardwick_n_default;
 			robot.brain.set('hardwick_n', hardwick_n);
 		} else {
 			hardwick_n = robot.brain.get('hardwick_n');
@@ -64,7 +67,7 @@ module.exports = function(robot) {
 
 	// request hardwick interval from bot
 	robot.respond(/hardwick interval/i, function(res) {
-		hardwick = robot.brain.get('hardwick_n');
+		hardwick_n = robot.brain.get('hardwick_n');
 		res.send("Hardwick will announce points every " + hardwick_n + " time(s) points are awarded.");
 	});
 
@@ -77,11 +80,20 @@ module.exports = function(robot) {
 	// tell hardwick only to show up every n times points are awarded
 	robot.respond(/hardwick show every (\d+)/i, function(res) {
 		new_n = res.match[1];
-		if (new_n > 1) {
-			robot.brain.set('hardwick_n', new_n);
-			res.send("Hardwick will now announce points every " + new_n + " time(s) points are awarded.");
-		} else {
-			res.reply("That's a ridiculous number. Try again.");
+		switch (true) {
+			case (new_n < 1):
+				res.reply("That's a ridiculous number. Try again.");
+				break;
+			case (new_n == 1):
+				res.reply("You want Hardwick to show up every single time someone earns points? No.");
+				break;
+			case (new_n > 1 && new_n < hardwick_n_minimum):
+				res.reply("Hardwick chooses to appear no more frequently than every " + hardwick_n_minimum + " times bot awards points.");
+				break;
+			default:
+				robot.brain.set('hardwick_n', new_n);
+				res.send("Hardwick will now announce points every " + new_n + " time(s) points are awarded.");
+				break;
 		}
 	});
 };
