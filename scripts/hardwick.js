@@ -1,17 +1,18 @@
 // Description:
-//   Every n times someone gets points, post a pic of Chris Hardwick giving out points
-//
+// 	Every n times someone gets points, post a pic of Chris Hardwick giving out points
+
 // Dependencies:
-//   None
-//
+// 	None
+
 // Configuration:
-//   None
-//
+// 	None
+
 // Commands:
-//   bot hardwick count: Echoes the hardwick count to the channel (how many times points have been awarded since the last Hardwick)
-//	 bot hardwick interval: Echoes hardwick_n - the frequency with which Hardwick appears (every n times points are awarded)
-//	 bot hardwick reset: resets the hardwick count to 0
-//	 bot hardwick show every n: changes hardwick_n interval as specified
+// 	bot hardwick status: Reports the hardwick count and the hardwick interval
+// 	bot hardwick count: Echoes the hardwick count to the channel (how many times points have been awarded since the last Hardwick)
+// 	bot hardwick interval: Echoes hardwick_n - the frequency with which Hardwick appears (every n times points are awarded)
+// 	bot hardwick reset: resets the hardwick count to 0
+// 	bot hardwick show every n: changes hardwick_n interval as specified
 
 module.exports = function(robot) {
 	hardwick_n_default = 100;
@@ -57,6 +58,13 @@ module.exports = function(robot) {
 				robot.brain.set('hardwick', 1);
 			}
 		}
+	});
+
+	// request hardwick status from bot
+	robot.respond(/hardwick status/i, function(res) {
+		hardwick = robot.brain.get('hardwick');
+		hardwick_n = robot.brain.get('hardwick_n');
+		res.send("Hardwick count is " + hardwick + ". Hardwick will announce points every " + hardwick_n + " time(s) points are awarded.");
 	});
 
 	// request hardwick count from bot
