@@ -1,92 +1,56 @@
 // Description:
-// 	Every n times someone gets points, post a pic of Chris Hardwick giving out points
-
+//   Every n times someone gets points, post a pic of Chris Hardwick giving out points
+//
 // Dependencies:
-// 	None
-
+//   None
+//
 // Configuration:
-// 	None
-
+//   None
+//
 // Commands:
-// 	bot hardwick status: Reports the hardwick count and the hardwick interval
-// 	bot hardwick count: Echoes the hardwick count to the channel (how many times points have been awarded since the last Hardwick)
-// 	bot hardwick interval: Echoes hardwick_n - the frequency with which Hardwick appears (every n times points are awarded)
-// 	bot hardwick reset: resets the hardwick count to 0
-// 	bot hardwick show every n: changes hardwick_n interval as specified
+//   bot hardwick odds: Shows the odds of Hardwick appearing on points awarded
+//	 bot hardwick set odds: Set Hardwick's odds of appearing
 
 module.exports = function(robot) {
-	hardwick_n_default = 100;
-	hardwick_n_minimum = 50;
+	hardwick_odds_default = 100;
+	hardwick_odds_minimum = 25;
 
 	robot.on("plus-one", function(plusone) {
-		// check brain for n, initialize to hardwick_n_default if not present (we don't want to see TOO much Hardwick)
-		if (robot.brain.get('hardwick_n') === null) {
-			hardwick_n = hardwick_n_default;
-			robot.brain.set('hardwick_n', hardwick_n);
+		// check brain for hardwick_odds, initialize to hardwick_odds_default if not present (we don't want to see TOO much Hardwick)
+		if (robot.brain.get('hardwick_odds') === null) {
+			hardwick_odds = hardwick_odds_default;
+			robot.brain.set('hardwick_odds', hardwick_odds);
 		} else {
-			hardwick_n = robot.brain.get('hardwick_n');
+			hardwick_odds = robot.brain.get('hardwick_odds');
 		}
 
 		// only do this if the direction is "++"
 		if (plusone.direction == "++") {
-			if (robot.brain.get('hardwick') !== null) {
-				hardwick = robot.brain.get('hardwick');
-				hardwick++;
-				if (hardwick > 0 && hardwick % hardwick_n === 0) {
-					// only do this every n times
-					// number of times points have been assigned IS divisible by n; output an image
-					pointses = [
-						"https://cldup.com/53iPKQdOk3.jpg",
-						"https://cldup.com/aToe7eLq0w.gif",
-						"https://cldup.com/FrFTwyDzSe.gif",
-						"https://cldup.com/mww1lkRcIs.gif",
-						"https://cldup.com/AgLwGKH25W.gif",
-						"https://cldup.com/cz0jDXA5q_-2000x2000.jpeg",
-						"https://cldup.com/mJQwSu6hrJ.gif"
-					];
-					var rand = pointses[Math.floor(Math.random() * pointses.length)];
-					robot.messageRoom(plusone.room, rand);
-
-					// reset the count to 0
-					robot.brain.set('hardwick', 0);
-				} else {
-					// not divisible by n. set to new incremented value and move on
-					robot.brain.set('hardwick', hardwick);
-				}
-			} else {
-				// initialize hardwick to 1
-				robot.brain.set('hardwick', 1);
+			var this_instance = Math.floor(Math.random() * hardwick_odds + 1);
+			if (this_instance === 1) {
+				pointses = [
+					"https://cldup.com/53iPKQdOk3.jpg",
+					"https://cldup.com/aToe7eLq0w.gif",
+					"https://cldup.com/FrFTwyDzSe.gif",
+					"https://cldup.com/mww1lkRcIs.gif",
+					"https://cldup.com/AgLwGKH25W.gif",
+					"https://cldup.com/cz0jDXA5q_-2000x2000.jpeg",
+					"https://cldup.com/mJQwSu6hrJ.gif"
+				];
+				var rand_img = pointses[Math.floor(Math.random() * pointses.length) - 1];
+				robot.messageRoom(plusone.room, rand_img);
 			}
 		}
 	});
 
-	// request hardwick status from bot
-	robot.respond(/hardwick status/i, function(res) {
-		hardwick = robot.brain.get('hardwick');
-		hardwick_n = robot.brain.get('hardwick_n');
-		res.send("Hardwick count is " + hardwick + ". Hardwick will announce points every " + hardwick_n + " time(s) points are awarded.");
-	});
-
-	// request hardwick count from bot
-	robot.respond(/hardwick count/i, function(res) {
-		hardwick = robot.brain.get('hardwick');
-		res.send("Hardwick count is " + hardwick + ".");
-	});
-
-	// request hardwick interval from bot
-	robot.respond(/hardwick interval/i, function(res) {
-		hardwick_n = robot.brain.get('hardwick_n');
-		res.send("Hardwick will announce points every " + hardwick_n + " time(s) points are awarded.");
-	});
-
-	// allow manual reset of n to 0
-	robot.respond(/hardwick reset/i, function(res) {
-		robot.brain.set('hardwick', 0);
-		res.send("Hardwick reset to 0. Hardwick sad. :-(");
+	// request hardwick odds from bot
+	robot.respond(/hardwick odds/i, function(res) {
+		hardwick_odds = robot.brain.get('hardwick_odds');
+		res.send("Hardwick will announce points randomly 1/" + hardwick_odds + " chance of appearing.");
 	});
 
 	// tell hardwick only to show up every n times points are awarded
-	robot.respond(/hardwick show every (\d+)/i, function(res) {
+	robot.respond(/hardwick set odds (\d+)/i, function(res) {
 		new_n = res.match[1];
 		switch (true) {
 			case (new_n < 1):
@@ -95,12 +59,12 @@ module.exports = function(robot) {
 			case (new_n == 1):
 				res.reply("You want Hardwick to show up every single time someone earns points? No.");
 				break;
-			case (new_n > 1 && new_n < hardwick_n_minimum):
-				res.reply("Hardwick chooses to appear no more frequently than every " + hardwick_n_minimum + " times bot awards points.");
+			case (new_n > 1 && new_n < hardwick_odds_minimum):
+				res.reply("Hardwick chooses to appear with probablility of no more than 1/" + hardwick_odds_minimum + ".");
 				break;
 			default:
-				robot.brain.set('hardwick_n', new_n);
-				res.send("Hardwick will now announce points every " + new_n + " time(s) points are awarded.");
+				robot.brain.set('hardwick_odds', new_n);
+				res.send("New Hardwick odds: 1/" + new_n + ".");
 				break;
 		}
 	});
