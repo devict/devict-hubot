@@ -17,16 +17,31 @@ var Promise = require('es6-promise').Promise
 var AsciiTable = require('ascii-table')
 var _ = require('lodash')
 
+var processTitle = function(title) {
+  if (title === "Code & Coffee") {
+    title = "☕ " + title
+  }
+
+  if (title.startsWith("devICT Presents: ")) {
+    title = "☆ " + title.substring(17)
+  }
+
+  if (title.length > 22) {
+    title = title.substr(0, 20) + '..'
+  }
+
+  return title
+}
+
 var eventMgr = {events: []}
 eventMgr.add = function(group, title, time, location) {
   if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return;
 
-  if (title.length > 22) title = title.substr(0, 20) + '..';
   if (location.length > 22) location = location.substr(0, 20) + '..';
 
   this.events.push({
     group: group,
-    title: title,
+    title: processTitle(title),
     time: time,
     location: location,
   })
@@ -41,11 +56,12 @@ eventMgr.asTableString = function() {
   table.setHeading('When', 'Who', 'What', 'Where')
 
   this.events.forEach(function(event) {
-    var dateStr = moment.tz(event.time, 'America/Chicago').format('MM/DD hh:mma')
+    var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd MM/DD hh:mma')
     table.addRow(dateStr, event.group, event.title, event.location)
   })
 
-  return '```\n' + table.toString() + '\n```'
+  var legend = "WWC = Women Who Code, OW = Open Wichita"
+  return '```\n' + legend + '\n' + table.toString() + '\n```'
 }
 
 eventMgr.reset = function() {
@@ -98,7 +114,7 @@ module.exports = function(robot) {
       meetupRequest('WWC', wwcURL),
       meetupRequest('devICT', devictURL),
       meetupRequest('MakeICT', makeictURL),
-      meetupRequest('Open Wichita', openwichitaURL)
+      meetupRequest('OW', openwichitaURL)
     ])
     .then(function(results) {
       eventMgr.sortTimeAscending()
