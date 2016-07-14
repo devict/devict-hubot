@@ -47,4 +47,10 @@ module.exports = function(robot) {
 
     msg.send(images[Math.floor(Math.random() * images.length)]);
   });
+
+  robot.hear(/\b(you're|your|ur) welcome\b/i, function(msg) {
+    if (shouldAbort(msg)) { return; }
+
+    msg.send('https://cldup.com/geupkvVUZz.gif');
+  });
 };
