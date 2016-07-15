@@ -25,7 +25,9 @@
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
     "moment": "^2.9.0",
-    "moment-timezone": "^0.3.0"
+    "moment-timezone": "^0.3.0",
+    "xmldom": "^0.1.22",
+    "xpath": "0.0.23"
   },
   "engines": {
     "node": "5.9.1"
