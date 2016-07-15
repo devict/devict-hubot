@@ -15,7 +15,6 @@
 var moment = require('moment-timezone')
 var Promise = require('es6-promise').Promise
 var AsciiTable = require('ascii-table')
-var _ = require('lodash')
 
 var processTitle = function(title) {
   if (title === "Code & Coffee") {
