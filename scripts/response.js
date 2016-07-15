@@ -48,7 +48,8 @@ module.exports = function(robot) {
     msg.send(images[Math.floor(Math.random() * images.length)]);
   });
 
-  robot.hear(/\b(you're|you&rsquo;re|youre|your|ur) welcome\b/i, function(msg) {
+  //regex curtesy of Michael Neth -> (yo)?u([^a-zA-Z0-9]| a)?re? welcome
+  robot.hear(/\b(yo)?u([^a-zA-Z0-9]| a)?re? welcome\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
     msg.send('https://cldup.com/geupkvVUZz.gif');
