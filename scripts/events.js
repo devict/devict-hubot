@@ -35,6 +35,7 @@ var processTitle = function(title) {
 }
 
 var eventMgr = {events: []}
+
 eventMgr.add = function(group, title, time, location) {
   if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return;
 
@@ -48,8 +49,32 @@ eventMgr.add = function(group, title, time, location) {
   })
 }
 
+// Sorts events by time with the next upcoming event first. In case of a tie we
+// sort by group name putting devICT last.
 eventMgr.sortTimeAscending = function() {
-  this.events.sort(function(a, b) { return a.time - b.time })
+  this.events.sort(function(a, b) {
+    var d = a.time - b.time
+    if (d === 0) {
+      return a == "devICT" ? (b == "devICT" ? 0 : -1) : 1
+    }
+    return d
+  })
+}
+
+eventMgr.combineDuplicates = function() {
+  var same = function(a, b) {
+    return a.title == b.title && a.time == b.time && a.location == b.location
+  }
+
+  for (var i = 1; i < this.events.length;) {
+    if (!same(this.events[i], this.events[i-1])) {
+      i++
+      continue;
+    }
+
+    this.events[i-1].group += "/" + this.events[i].group
+    this.events.splice(i, 1)
+  }
 }
 
 eventMgr.asTableString = function() {
@@ -119,6 +144,7 @@ module.exports = function(robot) {
     ])
     .then(function(results) {
       eventMgr.sortTimeAscending()
+      eventMgr.combineDuplicates()
       msg.send(eventMgr.asTableString())
       eventMgr.reset()
     })
