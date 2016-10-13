@@ -19,16 +19,20 @@ module.exports = (robot) ->
     username = msg.message.user.name
 
     if number == 20
-      msg.send("#{username} rolled a NAT 20 for #{reason}!!!")
+      msg.send("#{username} rolled a NAT 20 for #{reason}. Critial Success!!!")
+    else if number == 1
+      msg.send("#{username} rolled a NAT 1 for #{reason}. Critical Fail!")
     else
       msg.send("#{username} rolled a #{number} for #{reason}.")
 
   robot.respond /roll (\d+)d(\d+)( for .+)?/i, (msg) ->
     total = 0
+    descriptor = "total of"
     number_of_dice = parseInt(msg.match[1])
     number_of_sides = parseInt(msg.match[2])
     username = msg.message.user.name
     roll_log = []
+    is_only_one_die = (number_of_dice == 1)    
 
     if number_of_dice > 0 
       while number_of_dice != 0
@@ -61,8 +65,17 @@ module.exports = (robot) ->
 
     if msg.match[3]?
       reason = msg.match[3]
+    
+    reason += "."
 
-    msg.send("#{username} rolled a total of #{total}#{reason} #{roll_summary}")
+    if is_only_one_die && (total == 1 || (number_of_sides == 20 && total == 20))
+        descriptor = "NAT"
+        if total == 1
+            roll_summary = "Critical Fail!"
+        else
+            roll_summary = "Critical Success!!!"
+
+    msg.send("#{username} rolled a #{descriptor} #{total}#{reason} #{roll_summary}")
 
   roll_a_die = (number_of_sides) ->
     if !isNaN(number_of_sides)
