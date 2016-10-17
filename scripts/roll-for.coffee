@@ -19,7 +19,7 @@ module.exports = (robot) ->
     username = msg.message.user.name
 
     if number == 20
-      msg.send("#{username} rolled a NAT 20 for #{reason}. Critial Success!!!")
+      msg.send("#{username} rolled a NAT 20 for #{reason}. Critical Success!!!")
     else if number == 1
       msg.send("#{username} rolled a NAT 1 for #{reason}. Critical Fail!")
     else
