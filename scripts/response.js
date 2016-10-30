@@ -10,6 +10,7 @@
 // Commands:
 //   look at (this|that|it) - "look at that" guy
 //   so good - bot agrees
+//   you're welcome - Abed says yw
 
 // optOutUsers is a list of users who do not find value in hubot's
 // helpful responses.
@@ -52,6 +53,6 @@ module.exports = function(robot) {
   robot.hear(/\b(yo)?u([^a-zA-Z0-9]| a)?re? welcome\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
-    msg.send('https://cldup.com/geupkvVUZz.gif');
+    msg.send('+:you-are-welcome:');
   });
 };
