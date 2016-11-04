@@ -19,9 +19,9 @@ var AsciiTable = require('ascii-table')
 var processTitle = function(title) {
   if (title === "Code & Coffee") {
     title = "☕ " + title
-  } else if (title === "Level Up!") {
+  } else if (title === "Study Hall") {
     title = "⇪ " + title
-  } else if (title === ".NET Night") {
+  } else if (title.startsWith(".NET Night")) {
     title = "♯ " + title
   } else if (title.startsWith("devICT Presents: ")) {
     title = "☆ " + title.substring(17)
