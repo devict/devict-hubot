@@ -25,19 +25,28 @@ module.exports = function(robot) {
   robot.hear(/\bso good\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
-    msg.send('+:so-good:');
+    robot.emit('slack.reaction', {
+        message: msg.message,
+        name: "so-good"
+    });
   });
 
   robot.hear(/look at (this|that|it)/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
-    msg.send('+:look-at-that:');
+    robot.emit('slack.reaction', {
+        message: msg.message,
+        name: "look-at-that"
+    });
   });
 
   //regex curtesy of Michael Neth -> (yo)?u([^a-zA-Z0-9]| a)?re? welcome
   robot.hear(/\b(yo)?u([^a-zA-Z0-9]| a)?re? welcome\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
-    msg.send('https://cldup.com/geupkvVUZz.gif');
+    robot.emit('slack.reaction', {
+        message: msg.message,
+        name: "you-are-welcome"
+    });
   });
 };
