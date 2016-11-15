@@ -11,7 +11,7 @@
 //   bot (tewt|fart|toot|vrrt)
 
 module.exports = function(robot) {
-  robot.hear(/\b(tewt|fart|toot|vrrt)\b/i, function(msg) {
+  robot.respond(/\b(tewt|fart|toot|vrrt)\b/i, function(msg) {
 
     var faces = [
         ':anguished:',
