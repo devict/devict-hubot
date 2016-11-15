@@ -12,5 +12,6 @@
   "hubot-fliptable",
   "hubot-plusplus",
   "hubot-beer-me",
-  "hubot-secret-ballot"
+  "hubot-secret-ballot",
+  "hubot-slack-reaction"
 ]
