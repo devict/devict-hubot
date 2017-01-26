@@ -61,6 +61,10 @@ eventMgr.sortTimeAscending = function() {
   })
 }
 
+eventMgr.limitTo = function(n) {
+  this.events = this.events.slice(0, n);
+}
+
 eventMgr.combineDuplicates = function() {
   var same = function(a, b) {
     return a.title == b.title && a.time == b.time && a.location == b.location
@@ -145,6 +149,7 @@ module.exports = function(robot) {
     .then(function(results) {
       eventMgr.sortTimeAscending()
       eventMgr.combineDuplicates()
+      eventMgr.limitTo(25)
       msg.send(eventMgr.asTableString())
       eventMgr.reset()
     })
