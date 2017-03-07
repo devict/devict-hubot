@@ -100,10 +100,10 @@ eventMgr.reset = function() {
 
 module.exports = function(robot) {
   robot.respond(/events/i, function(msg) {
-    var devictURL = 'http://api.meetup.com/2/events?status=upcoming' +
-      '&order=time&limited_events=False&group_urlname=devict' +
-      '&desc=false&offset=0&photo-host=public&format=json&page=20' +
-      '&fields=&sig_id=73273692&sig=9cdd3af6b5a26eb664fe5abab6e5cf7bfaaf090e'
+    var devictURL = 'https://api.meetup.com/2/events?offset=0&format=json' +
+      '&limited_events=False&group_urlname=devICT&photo-host=public&page=20' +
+      '&fields=&order=time&status=upcoming&desc=false&sig_id=73273692' +
+      '&sig=8f90c3aff1c3055274bc6dffca9225f51754a928'
 
     var wwcURL = 'https://api.meetup.com/2/events?offset=0&format=json' +
       '&limited_events=False&group_urlname=WWCWichita&photo-host=public' +
@@ -127,7 +127,7 @@ module.exports = function(robot) {
             return reject('Error making request: ' + err)
           }
           if (200 != res.statusCode) {
-            return reject('Request returned status code: ' + res.statusCode)
+            return reject(group + ': Request returned status code: ' + res.statusCode)
           }
 
           JSON.parse(body).results.forEach(function(event) {
