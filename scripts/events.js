@@ -25,6 +25,8 @@ var processTitle = function(title) {
     title = "♯ " + title
   } else if (title.startsWith("devICT Presents: ")) {
     title = "☆ " + title.substring(17)
+  } else {
+    title = "  " + title
   }
 
   if (title.length > 22) {
