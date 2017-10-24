@@ -12,6 +12,7 @@
 // Commands:
 //   hubot events - Print a list of upcoming devICT events
 
+var _ = require('lodash')
 var moment = require('moment-timezone')
 var Promise = require('es6-promise').Promise
 var AsciiTable = require('ascii-table')
@@ -66,19 +67,23 @@ eventMgr.limitTo = function(n) {
 }
 
 eventMgr.combineDuplicates = function() {
-  var same = function(a, b) {
-    return a.title == b.title && a.time == b.time && a.location == b.location
-  }
+  // Group events by event name, time, and location, then drop the keys
+  // since we don't need them.
+  var groupedEvents = _.values(_.groupBy(this.events, function (e) {
+    return [e.title, e.time, e.location].join(' | ');
+  }))
 
-  for (var i = 1; i < this.events.length;) {
-    if (!same(this.events[i], this.events[i-1])) {
-      i++
-      continue;
-    }
+  // Process the groups, combining any that have more than a single event
+  var eventsCombined = _.map(groupedEvents, function (eGroup) {
+    if (eGroup.length === 1) return eGroup[0];
 
-    this.events[i-1].group += "/" + this.events[i].group
-    this.events.splice(i, 1)
-  }
+    var event = eGroup[0];
+    event.group = eGroup.map(function (e) { return e.group }).join('/')
+    return event
+  });
+
+  // Set the combined events back to our main state
+  this.events = eventsCombined;
 }
 
 eventMgr.asTableString = function() {

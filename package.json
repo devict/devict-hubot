@@ -25,6 +25,7 @@
     "hubot-slack": "^4.2.1",
     "hubot-slack-reaction": "0.0.3",
     "hubot-youtube": "^0.1.2",
+    "lodash": "^4.17.4",
     "moment": "^2.9.0",
     "moment-timezone": "^0.3.0",
     "xmldom": "^0.1.22",
