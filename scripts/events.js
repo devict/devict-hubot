@@ -93,7 +93,7 @@ eventMgr.asTableString = function() {
   })
 
   var legend = "WWC = Women Who Code, OW = Open Wichita"
-  return '```\n' + legend + '\n' + table.toString() + '\n```'
+  return '```\n' + legend + '\n' + table.toString() + '\n```\nlots of our events happen at the same places\nThe Labor Party: http://bit.ly/2yLNw7T \nMakeICT: http://bit.ly/2zMRwmT'
 }
 
 eventMgr.reset = function() {
