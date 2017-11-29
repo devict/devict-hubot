@@ -32,7 +32,7 @@ module.exports = function(robot) {
     });
   });
 
-  robot.hear(/look at (this|that|it)/i, function(msg) {
+  robot.hear(/\blook at (this|that|it)\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
     robot.emit('slack.reaction', {
@@ -41,7 +41,7 @@ module.exports = function(robot) {
     });
   });
   
-  robot.hear(/(neat|nature)/i, function(msg) {
+  robot.hear(/\b(neat|nature|neature|aspen)\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
 
     robot.emit('slack.reaction', {
