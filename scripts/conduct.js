@@ -8,10 +8,11 @@
 //   None
 //
 // Commands:
-//   hubot conduct - Remind the channel about the devICT code of conduct
+//   bot conduct - Remind the current channel about the devICT code of conduct
+//   bot conduct #hubot - Remind the #hubot channel about the devICT code of conduct (omit "bot" and this can be in a DM to bot)
 
 module.exports = (robot) => {
-    robot.respond(/(?:code(?: of)? )?conduct(?:\s?([#@][\w-]+))?/i, (msg) => {
+    robot.respond(/(?:code(?: of)? )?conduct(?:\s?(#[\w-]+))?/i, (msg) => {
         let msgs = [
             "devICT is dedicated to a safe and harassment-free experience for " +
                 "everyone. We do not tolerate harassment in any form. If you have any " +
