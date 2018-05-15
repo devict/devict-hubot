@@ -1,0 +1,111 @@
+*Channel Guide*
+Welcome to devICT Slack! This is a vibrant and active community though you might not see all of the activity because conversations are split into channels. Using channels enables us to have many different conversations happening at once. Channels also allow you to subscribe to topics that match your interests.
+
+As our community grows the number of channels grows as well. We periodically archive inactive or unused channels to keep this managable but it can still be a bit overwhelming. To help you make the most of this community we have created this guide to our channels.
+
+Browse through these and if something catches your eye click on the channel name for a preview. If you want to join click "Join Channel" to keep that channel around. Come back to this message to look for more.
+
+*Core Channels*
+>Everyone starts out in these channels though you may choose to `/leave` if its not your thing. Except #general; nobody can leave that muahahaha!
+
+*#general*: All members are in this channel and it is the *primary place for conversations*. If a long conversation would be more appropriate in another channel (like WordPress questions in #wordpress) then you may be asked to move the conversation there but that's *no big deal*.
+
+_If you need to focus and conversation here is too distracting you can mute the channel with `/mute` or just sign out for a while. That's ok!._
+
+*#random*: Cat pictures, funny YouTube videos, links to some weird website you found, etc. Any topic is appropriate here (within the CoC of course). If you have something to share but it just really feels... "random" then go ahead and throw it here.
+
+*#events*: See or post announcements of upcoming community events. These don't have to be devICT events.
+
+*#job-postings*: See or post job openings. Active job-seekers can configure this channel to always send them notifications so keep chatter to a minimum. Questions/comments in response to a particular job posting are fine but try to keep them threaded on the job post itself.
+
+*#career-advice*: Give or receive advice about career advancement. This is a great place for discussions / questions that you might be tempted to put in the jobs channel.
+
+*#review-feedback*: Help others or get some help yourself! Constructive criticism only of course :smile:
+
+*#suggestions*: A place to suggest changes for the devICT Slack or community. These can go in #general too of course but they're less likely to get missed here.
+
+<!--split-->
+
+_The rest of these channels are opt-in: you won't be in them by default so you have to join if they sound neat._
+
+*Languages and Frameworks*
+>These channels are for questions/discussions about a specific programming language or framework.
+
+#batch, #coldfusion, #cplusplus, #css, #dotnet, #elixir, #go, #haskell, #java, #patching, #perl, #ruby, #rust, #shells, #swift, #xamarin
+
+>Some languages spawned off new child channels for specific frameworks/environments/dialects.
+
+- #javascript (#angular, #elm-lang, #lisp, #node, #react-native, #react, #vue)
+- #php (#laravel, #wordpress, #drupal)
+- #python (#django)
+
+#database: This one's not about a programming language really but all MySQL, Postgres, Cassandra, MongoDB etc discussions tend to happen here.
+
+*Web Development*
+>We aren't all web developers but enough of us are that we have more than a couple channels about it. Here they are! Note some are duplicated in this guide.
+
+#css, #design, #front-end, #javascript, #new-to-web-dev, #seo, #web-api
+
+*Operating Systems / Environments*
+>These channels are about using, developing, or deploying applications for a specific environment.
+
+#aws, #docker, #kubernetes, #linux, #mac, #mobile-dev, #windows
+
+<!--split-->
+
+*Group Links*
+>These groups connect our community to other groups.
+
+- #outreach: devICT members actively working to spread awareness of our community to others.
+- #devict-to-startup: A linked slack channel with Startup Wichita's Slack.
+- #laborparty: A place for Labor Party members to chat about LP things.
+- #wwc-public: The public channel for members/allies of Women Who Code Wichita. Ask to join the WWC private channel if you identify as a woman or non-binary.
+
+*Events and Programs*
+>These are focused around a recurring event or special project.
+
+#advent-of-code, #dev-survey, #functional-works, #hacktoberfest, #hubot, #kansaslinuxfest, #messformakers, #openwichita, #study-hall, #the-c-sharps-band, #wu_coin
+
+<!--split-->
+
+*Tech Concepts*
+>These channels are for more abstract topics that are generally language agnostic.
+
+#ai, #architecture, #blockchain, #computer-science, #cryptography, #cryptocurrency, #datasci, #devops, #floss, #infosec, #networking, #vr-ar-mr-dev, #web-api
+
+*Physical Tech*
+>Discussions at the intersection of code and the physical world.
+
+#hardware, #robots, #iot
+
+*How People Work*
+>A loose collection of channels that discuss the methods people use to work or further their careers.
+
+#scrum-user-group, #contracting, #education, #mentorship, #remote-working, #conferences
+
+*Specific Tools*
+>Some tools have enough fans/users that we end up talking about them often. These channels are generally designed to help you get the most out of those tools.
+
+#emacs, #git, #gitlab, #graphql, #text-editors, #vim
+
+<!--split-->
+
+*Things People Make*
+>Some people make stuff and want to share it!
+
+#blogging, #inmysparetime, #itookapicture
+
+*Explicitly Non-tech*
+>We don't just talk about computers in here! The point of this community is to connect with each other as people. These channels hold the discussions about non-technical topics that come up often.
+
+#bicycle, #books, #drink, #espanol, #food, #get-moving, #marketplace, #music, #podcasts, #politics, #religion
+
+*Game Related (Video or Otherwise)*
+>Making games or playing games results in conversations in one of these
+
+#dnd, #gamedev, #games, #ictgamejam, #igda, #minecraft
+
+*Just for Fun*
+>Some of the more light-hearted channels :laughing:
+
+#emergency-cute, #stupid-jokes
