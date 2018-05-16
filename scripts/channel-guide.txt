@@ -1,9 +1,15 @@
 *Channel Guide*
-Welcome to devICT Slack! This is a vibrant and active community. Conversations are split into channels. Using channels enables us to have many different conversations happening at once, and enables _you_ to subscribe to topics that match your interests.
+Welcome to devICT Slack! This Slack team is the primary way we execute our mission to
 
-As our community grows, the increasing number of channels may seem overwhelming. We periodically archive inactive or unused channels to combat this. To help you make the most of this community, we have created this guide to our channels.
+> *Educate, Empower, and Connect software developers in the Wichita area*.
 
-Browse through these and if something catches your eye click on the channel name for a preview. If you want to join, click "Join Channel" to keep that channel around, then come back to this message to find more!
+This is a vibrant and active community. Conversations are split into channels. Using channels enables us to hold many conversations at once and enables _you_ to subscribe to topics that match your interests.
+
+The increasing number of channels in this community may seem overwhelming so we periodically archive inactive or unused channels. To help you make the most of this community, we have created this guide!
+
+Browse through these pages and if something catches your eye click on the channel name for a preview. If you want to join, click "Join Channel" to keep that channel around, then come back to this message to find more!
+
+<!--split-->
 
 *Core Channels*
 >Everyone starts out in these channels, though you may choose to `/leave` if it's not your thing. Except #general; nobody can leave that muahahaha!
@@ -109,3 +115,5 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 >Some of the more light-hearted channels :laughing:
 
 #emergency-cute, #stupid-jokes
+
+This completes the channel guide for devICT Slack. We’re glad you joined us and feel free to reach out anytime with questions.
