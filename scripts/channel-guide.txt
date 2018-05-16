@@ -1,34 +1,34 @@
 *Channel Guide*
 Welcome to devICT Slack! This Slack team is the primary way we execute our mission to
 
-> *Educate, Empower, and Connect software developers in the Wichita area*.
+>*Educate, Empower, and Connect software developers in the Wichita area*.
 
 This is a vibrant and active community. Conversations are split into channels. Using channels enables us to hold many conversations at once and enables _you_ to subscribe to topics that match your interests.
 
-The increasing number of channels in this community may seem overwhelming so we periodically archive inactive or unused channels. To help you make the most of this community, we have created this guide!
+The number of channels in this community may seem overwhelming so we periodically archive inactive or unused channels. To help you make the most of this community we have created this guide!
 
 Browse through these pages and if something catches your eye click on the channel name for a preview. If you want to join, click "Join Channel" to keep that channel around, then come back to this message to find more!
 
 <!--split-->
 
 *Core Channels*
->Everyone starts out in these channels, though you may choose to `/leave` if it's not your thing. Except #general; nobody can leave that muahahaha!
+>These are the default channels. You may still choose to `/leave` any of them, except #general; nobody can leave that! :laughing:
 
-*#general*: All members are in this channel and it is the *primary place for conversations*. If a long conversation would be more appropriate in another channel (like WordPress questions in #wordpress), then you may be asked to move the conversation there, but that's *no big deal*.
+*#general*: The *primary place for conversations*. If a discussion is more appropriate in another channel then you may be asked to move it there, but that’s *no big deal*.
 
-_If you need to focus or the conversation here is too distracting, you can mute the channel with `/mute` or just sign out for a while. That's OK!_
+_If you need to focus mute the channel with `/mute` or sign out for a while. That’s OK!_
 
-*#random*: Cat pictures, funny YouTube videos, links to some weird website you found, etc. Any topic is appropriate here (within the CoC of course). If you have something to share but it just really feels... "random" then go ahead and throw it here.
+*#random*: Cat pictures, funny YouTube videos, links to some weird site you found, etc. Any topic is appropriate here (within the CoC).
 
 *#events*: See or post announcements of upcoming community events. These don't have to be devICT events.
 
-*#job-postings*: See or post job openings. Active job-seekers can configure this channel to always send them notifications, so keep chatter to a minimum. Questions/comments in response to a particular job posting are fine, but try to keep them threaded on the job post itself.
+*#job-postings*: See or post job openings. Active job-seekers may configure this channel to send notifications, so keep chatter to a minimum. Questions/comments in response to a particular job posting are fine, but try to keep them threaded on the job post itself.
 
 *#career-advice*: Give or receive advice about career advancement. This is a great place for discussions/questions.
 
 *#review-feedback*: Help others or get some help yourself! Constructive criticism only of course :smile:
 
-*#suggestions*: A place to suggest changes for the devICT Slack or community. These can go in #general too, but they're easier to keep track of here.
+*#suggestions*: Suggest changes for devICT. These can go in #general too, but they're easier to keep track of here.
 
 <!--split-->
 
@@ -46,6 +46,8 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 - #python (#django)
 
 #database: This one's not about a programming language really but all MySQL, PostgreSQL, Cassandra, MongoDB etc discussions tend to happen here.
+
+<!--split-->
 
 *Web Development*
 >We aren't all web developers but enough of us are that we have more than a couple channels about it. Here they are! Note some are duplicated in this guide.
@@ -84,15 +86,15 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 
 #hardware, #robots, #iot
 
-*How People Work*
->A loose collection of channels that discuss the methods people use to work or further their careers.
-
-#scrum-user-group, #contracting, #education, #mentorship, #remote-working, #conferences
-
 *Specific Tools*
 >Some tools have enough fans/users that we end up talking about them often. These channels are generally designed to help you get the most out of those tools.
 
 #emacs, #git, #gitlab, #graphql, #text-editors, #vim
+
+*How People Work*
+>A loose collection of channels that discuss the methods people use to work or further their careers.
+
+#scrum-user-group, #contracting, #education, #mentorship, #remote-working, #conferences
 
 <!--split-->
 
@@ -102,7 +104,7 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 #blogging, #inmysparetime, #itookapicture
 
 *Explicitly Non-tech*
->We don't just talk about computers in here! The point of this community is to connect with each other as people. :slightly_smiling_face: These channels hold the discussions about non-technical topics that come up often.
+>We don't just talk about computers in here! Our goal is to connect with each other as people. :smile: These channels hold the discussions about non-technical topics that come up often.
 
 #bicycle, #books, #drink, #espanol, #food, #get-moving, #marketplace, #music, #podcasts, #politics, #religion
 
@@ -112,6 +114,6 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 #dnd, #gamedev, #games, #ictgamejam, #igda, #minecraft
 
 *Just for Fun*
->Some of the more light-hearted channels :laughing:
+>Some of the more light-hearted channels!
 
-#emergency-cute, #stupid-jokes
+#emergency-cute :heart:, #stupid-jokes :laughing:
