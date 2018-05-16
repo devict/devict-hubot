@@ -40,7 +40,7 @@ module.exports = function(robot) {
     if (page+1 < pages.length) {
       text += "_This is page "+(page+1)+" of "+(pages.length)+". Respond `channels "+(page+2)+"` in this DM for the next page._";
     } else {
-      text += "_That's the end of the channel guide! Happy Slacking!_";
+      text += "_That's the end of the channel guide! We’re glad you joined us and feel free to reach out anytime with questions. Happy Slacking!_";
     }
 
     robot.send({room: room.id}, text);

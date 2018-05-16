@@ -115,5 +115,3 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 >Some of the more light-hearted channels :laughing:
 
 #emergency-cute, #stupid-jokes
-
-This completes the channel guide for devICT Slack. We’re glad you joined us and feel free to reach out anytime with questions.
