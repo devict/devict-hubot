@@ -11,7 +11,7 @@
     "hubot-beer-me": "^0.1.2",
     "hubot-diagnostics": "0.0.1",
     "hubot-fliptable": "^1.2.0",
-    "hubot-google-images": "^0.1.0",
+    "hubot-giphy-gifme": "^1.0.0",
     "hubot-google-translate": "^0.1.0",
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-maps": "0.0.0",

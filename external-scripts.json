@@ -1,7 +1,7 @@
 [
   "hubot-diagnostics",
   "hubot-heroku-keepalive",
-  "hubot-google-images",
+  "hubot-giphy-gifme",
   "hubot-google-translate",
   "hubot-pugme",
   "hubot-maps",
