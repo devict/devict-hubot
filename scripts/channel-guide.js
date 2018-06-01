@@ -47,9 +47,10 @@ module.exports = function(robot) {
     send(room.id, page);
   });
 
-  // Give page 1 to new members when they join #general.
-  var general = robot.adapter.client.rtm.dataStore.getChannelByName('#general');
   robot.enter(function(msg) {
+    // Give page 1 to new members when they join #general.
+    var general = robot.adapter.client.rtm.dataStore.getChannelByName('#general');
+
     if (general.id !== msg.message.room) {
       return;
     }
