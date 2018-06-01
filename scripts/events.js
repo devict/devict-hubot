@@ -14,7 +14,6 @@
 
 var moment = require('moment-timezone')
 var Promise = require('es6-promise').Promise
-var AsciiTable = require('ascii-table')
 
 var processTitle = function(title) {
   if (title === "Code & Coffee") {
@@ -25,12 +24,6 @@ var processTitle = function(title) {
     title = "♯ " + title
   } else if (title.startsWith("devICT Presents: ")) {
     title = "☆ " + title.substring(17)
-  } else {
-    title = "  " + title
-  }
-
-  if (title.length > 22) {
-    title = title.substr(0, 20) + '..'
   }
 
   return title
@@ -38,15 +31,17 @@ var processTitle = function(title) {
 
 var eventMgr = {events: []}
 
-eventMgr.add = function(group, title, time, location) {
-  if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return;
+eventMgr.add = function(group, title, time, url, location) {
+  if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return
 
-  if (location.length > 22) location = location.substr(0, 20) + '..';
+  if (location.length > 22) location = location.substr(0, 20) + '..'
 
   this.events.push({
     group: group,
+    hosts: [group],
     title: processTitle(title),
     time: time,
+    url: url,
     location: location,
   })
 }
@@ -64,36 +59,53 @@ eventMgr.sortTimeAscending = function() {
 }
 
 eventMgr.limitTo = function(n) {
-  this.events = this.events.slice(0, n);
+  this.events = this.events.slice(0, n)
 }
 
-eventMgr.combineDuplicates = function() {
-  var same = function(a, b) {
-    return a.title == b.title && a.time == b.time && a.location == b.location
-  }
+eventMgr.removeDuplicates = function() {
 
-  for (var i = 1; i < this.events.length;) {
-    if (!same(this.events[i], this.events[i-1])) {
-      i++
-      continue;
+  // Filter this.events into this new array.
+  var events = []
+
+  // Keep a map of the event event titles we have seen. Ignore dupe events by
+  // title but append dupe group names. i.e. Study Hall is WWC/devICT
+  var seen = {}
+
+  for (var i = 0; i < this.events.length; i++) {
+    var e = this.events[i]
+
+    // Is this a dupe?
+    if (seen.hasOwnProperty(e.title)) {
+      var idx = seen[e.title] // `events` index of first event in this series
+
+      if (events[idx].hosts.indexOf(e.group) === -1) {
+        events[idx].hosts.push(e.group)
+      }
+
+      continue
     }
 
-    this.events[i-1].group += "/" + this.events[i].group
-    this.events.splice(i, 1)
+    // push `e` into `events` and store its index in `seen`
+    seen[e.title] = events.push(e) - 1
   }
+
+  this.events = events
 }
 
 eventMgr.asTableString = function() {
-  var table = new AsciiTable('Upcoming Events')
-  table.setHeading('When', 'Who', 'What', 'Where')
+  var resp = '*Upcoming Events!*'
 
   this.events.forEach(function(event) {
     var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd MM/DD hh:mma')
-    table.addRow(dateStr, event.group, event.title, event.location)
+    var hosts = event.hosts.join(' & ')
+    var location = event.location ? event.location : '_Undefined_'
+    resp += `
+<${event.url}|${event.title}>
+> *When:* ${dateStr} *Hosted by:* ${hosts} *Where:* ${location}.
+`
   })
 
-  var legend = "WWC = Women Who Code, OW = Open Wichita"
-  return '```\n' + legend + '\n' + table.toString() + '\n```\nlots of our events happen at the same places\nThe Labor Party: http://bit.ly/2yLNw7T \nMakeICT: http://bit.ly/2zMRwmT'
+  return resp
 }
 
 eventMgr.reset = function() {
@@ -112,16 +124,6 @@ module.exports = function(robot) {
       '&page=20&fields=&order=time&status=upcoming&desc=false' +
       '&sig_id=73273692&sig=4111c5adf6695f954bd7ae7dfd86896970b451f6'
 
-    var makeictURL = 'https://api.meetup.com/2/events?offset=0&format=json&' +
-      'limited_events=False&group_urlname=MakeICT&photo-host=public' +
-      '&page=20&fields=&order=time&desc=false&status=upcoming&' +
-      'sig_id=15434981&sig=5da76a33f42c53199e5d7f97a3ed5340f3cc2e61'
-
-    var openwichitaURL = 'https://api.meetup.com/2/events?offset=0&format=json&' +
-      'limited_events=False&group_urlname=openwichita&photo-host=public&' +
-      'page=20&fields=&order=time&desc=false&status=upcoming' +
-      '&sig_id=15434981&sig=25dca881d2d1fc821fe708f3687c83f451c1b683';
-
     var meetupRequest = function(group, url) {
       return new Promise(function(resolve, reject) {
         msg.http(url).get()(function(err, res, body) {
@@ -133,8 +135,9 @@ module.exports = function(robot) {
           }
 
           JSON.parse(body).results.forEach(function(event) {
+            // TODO pass in better venue information so we can make it a map link
             var venue = (event.venue === undefined) ? '' : event.venue.name
-            eventMgr.add(group, event.name, event.time, venue)
+            eventMgr.add(group, event.name, event.time, event.event_url, venue)
           })
 
           resolve()
@@ -143,14 +146,12 @@ module.exports = function(robot) {
     }
 
     Promise.all([
-      meetupRequest('WWC', wwcURL),
+      meetupRequest('Women Who Code', wwcURL),
       meetupRequest('devICT', devictURL),
-      meetupRequest('MakeICT', makeictURL),
-      meetupRequest('OW', openwichitaURL)
     ])
     .then(function(results) {
       eventMgr.sortTimeAscending()
-      eventMgr.combineDuplicates()
+      eventMgr.removeDuplicates()
       eventMgr.limitTo(25)
       msg.send(eventMgr.asTableString())
       eventMgr.reset()
