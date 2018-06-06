@@ -99,7 +99,7 @@ eventMgr.formatted = function() {
   this.events.forEach(function(event) {
     var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd MM/DD hh:mma')
     var hosts = event.hosts.join(' & ')
-    var location = event.location ? event.location : '_Undefined_'
+    var location = event.location ? event.location : '_TBD_'
     resp += `
 <${event.url}|${event.title}>
 >*When:* ${dateStr} *Hosted by:* ${hosts} *Where:* ${location}.`
