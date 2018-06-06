@@ -20,8 +20,10 @@ var processTitle = function(title) {
     title = ":coffee: " + title
   } else if (title === "Study Hall") {
     title = ":books: " + title
+  } else if (title === "Game Dev Potluck") {
+    title = ":video_game: " + title
   } else if (title.startsWith("devICT Presents: ")) {
-    title = ":movie_camera: " + title.substring(17)
+    title = ":movie_camera: " + title
   }
 
   return title
