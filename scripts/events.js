@@ -17,13 +17,11 @@ var Promise = require('es6-promise').Promise
 
 var processTitle = function(title) {
   if (title === "Code & Coffee") {
-    title = "☕ " + title
+    title = ":coffee: " + title
   } else if (title === "Study Hall") {
-    title = "⇪ " + title
-  } else if (title.startsWith(".NET Night")) {
-    title = "♯ " + title
+    title = ":books: " + title
   } else if (title.startsWith("devICT Presents: ")) {
-    title = "☆ " + title.substring(17)
+    title = ":movie_camera: " + title.substring(17)
   }
 
   return title
