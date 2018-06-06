@@ -92,8 +92,8 @@ eventMgr.removeDuplicates = function() {
   this.events = events
 }
 
-eventMgr.asTableString = function() {
-  var resp = '*Upcoming Events!*'
+eventMgr.formatted = function() {
+  var resp = '*Upcoming Events!* _(Recurring events only shown once)_'
 
   this.events.forEach(function(event) {
     var dateStr = moment.tz(event.time, 'America/Chicago').format('ddd MM/DD hh:mma')
@@ -153,7 +153,10 @@ module.exports = function(robot) {
       eventMgr.sortTimeAscending()
       eventMgr.removeDuplicates()
       eventMgr.limitTo(25)
-      msg.send(eventMgr.asTableString())
+      msg.send({
+        text: eventMgr.formatted(),
+        unfurl_links: false,
+      })
       eventMgr.reset()
     })
     .catch(function(err) {
