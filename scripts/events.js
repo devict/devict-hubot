@@ -31,7 +31,7 @@ var processTitle = function(title) {
 
 var eventMgr = {events: []}
 
-eventMgr.add = function(group, title, time, url, location) {
+eventMgr.add = function(group, title, time, url, series, location) {
   if (moment.tz(time, 'America/Chicago') > moment().add(2, 'months')) return
 
   if (location.length > 22) location = location.substr(0, 20) + '..'
@@ -42,6 +42,7 @@ eventMgr.add = function(group, title, time, url, location) {
     title: processTitle(title),
     time: time,
     url: url,
+    series: series,
     location: location,
   })
 }
@@ -101,8 +102,12 @@ eventMgr.formatted = function() {
     var location = event.location ? event.location : '_Undefined_'
     resp += `
 <${event.url}|${event.title}>
->*When:* ${dateStr} *Hosted by:* ${hosts} *Where:* ${location}.
-`
+>*When:* ${dateStr} *Hosted by:* ${hosts} *Where:* ${location}.`
+    if (event.series && event.series.description) {
+      resp += `
+>${event.series.description}`
+    }
+    resp += "\n"
   })
 
   return resp
@@ -114,15 +119,9 @@ eventMgr.reset = function() {
 
 module.exports = function(robot) {
   robot.respond(/events/i, function(msg) {
-    var devictURL = 'https://api.meetup.com/2/events?offset=0&format=json' +
-      '&limited_events=False&group_urlname=devICT&photo-host=public&page=20' +
-      '&fields=&order=time&status=upcoming&desc=false&sig_id=73273692' +
-      '&sig=8f90c3aff1c3055274bc6dffca9225f51754a928'
+    var devictURL = 'https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&group_urlname=devICT&photo-host=public&page=20&fields=series&order=time&desc=false&status=upcoming&sig_id=73273692&sig=537d61d321f2fde426c4dac2e1fa4cdace9c6477'
 
-    var wwcURL = 'https://api.meetup.com/2/events?offset=0&format=json' +
-      '&limited_events=False&group_urlname=WWCWichita&photo-host=public' +
-      '&page=20&fields=&order=time&status=upcoming&desc=false' +
-      '&sig_id=73273692&sig=4111c5adf6695f954bd7ae7dfd86896970b451f6'
+    var wwcURL = 'https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&group_urlname=WWCWichita&photo-host=public&page=20&fields=series&order=time&desc=false&status=upcoming&sig_id=73273692&sig=9a2cb1fbe4d6e38fddcb58c9a6d2d76c5812b873'
 
     var meetupRequest = function(group, url) {
       return new Promise(function(resolve, reject) {
@@ -137,7 +136,7 @@ module.exports = function(robot) {
           JSON.parse(body).results.forEach(function(event) {
             // TODO pass in better venue information so we can make it a map link
             var venue = (event.venue === undefined) ? '' : event.venue.name
-            eventMgr.add(group, event.name, event.time, event.event_url, venue)
+            eventMgr.add(group, event.name, event.time, event.event_url, event.series, venue)
           })
 
           resolve()
