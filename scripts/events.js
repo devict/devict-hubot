@@ -101,7 +101,7 @@ eventMgr.formatted = function() {
     var location = event.location ? event.location : '_Undefined_'
     resp += `
 <${event.url}|${event.title}>
-> *When:* ${dateStr} *Hosted by:* ${hosts} *Where:* ${location}.
+>*When:* ${dateStr} *Hosted by:* ${hosts} *Where:* ${location}.
 `
   })
 
