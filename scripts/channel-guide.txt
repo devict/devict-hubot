@@ -68,6 +68,7 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 - #devict-to-startup: A linked Slack channel with Startup Wichita's Slack.
 - #laborparty: A place for Labor Party members to chat about LP things.
 - #wwc-public: The public channel for members/allies of Women Who Code Wichita. Ask to join the WWC private channel if you identify as a woman or non-binary.
+- #adastra: A forum for the Ad Astra Tech Alliance
 
 *Events and Programs*
 >These are focused around recurring events or special projects.
@@ -106,7 +107,7 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 *Explicitly Non-tech*
 >We don't just talk about computers in here! Our goal is to connect with each other as people. :smile: These channels hold the discussions about non-technical topics that come up often.
 
-#bicycle, #books, #drink, #espanol, #food, #get-moving, #marketplace, #music, #podcasts, #politics, #religion
+#bicycle, #books, #drink, #espanol, #finance, #food, #get-moving, #marketplace, #music, #parenting, #podcasts, #politics, #religion
 
 *Game Related (Video or Otherwise)*
 >Making games or playing games. All things game-related. :video_game: :game_die:
