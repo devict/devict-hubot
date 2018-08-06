@@ -57,7 +57,7 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 *Operating Systems / Environments*
 >These channels are about using, developing, or deploying applications for a specific environment.
 
-#aws, #docker, #kubernetes, #linux, #mac, #mobile-dev, #windows
+#aws, #docker, #kubernetes, #linux, #mac, #mobile-dev, #windows, #serverless
 
 <!--split-->
 
@@ -73,7 +73,7 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 *Events and Programs*
 >These are focused around recurring events or special projects.
 
-#advent-of-code, #dev-survey, #functional-works, #hacktoberfest, #hubot, #kansaslinuxfest, #messformakers, #openwichita, #study-hall, #the-c-sharps-band, #wu_coin
+#advent-of-code, #batty, #dev-survey, #functional-works, #hacktoberfest, #hubot, #kansaslinuxfest, #messformakers, #openwichita, #study-hall, #the-c-sharps-band, #wu_coin
 
 <!--split-->
 
