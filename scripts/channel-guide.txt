@@ -16,9 +16,9 @@ Browse through these pages and if something catches your eye click on the channe
 
 *#general*: The *primary place for conversations*. If a discussion is more appropriate in another channel then you may be asked to move it there, but that’s *no big deal*.
 
-_If you need to focus mute the channel with `/mute` or sign out for a while. That’s OK!_
+_If you need to focus you can mute the channel with `/mute` or sign out for a while. That’s OK!_
 
-*#random*: Cat pictures, funny YouTube videos, links to some weird site you found, etc. Any topic is appropriate here (within the CoC).
+*#random*: Cat pictures, funny YouTube videos, links to some weird site you found, etc. Any topic is appropriate here (within the Code of Conduct).
 
 *#events*: See or post announcements of upcoming community events. These don't have to be devICT events.
 
@@ -64,6 +64,7 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 *Group Links*
 >These groups connect our community to other groups. :globe_with_meridians:
 
+- #devict-institute: Public communications of the devICT Institute Board of Directors.
 - #outreach: devICT members actively working to spread awareness of our community to others.
 - #devict-to-startup: A linked Slack channel with Startup Wichita's Slack.
 - #laborparty: A place for Labor Party members to chat about LP things.
