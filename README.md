@@ -12,6 +12,10 @@ This README is intended to help get you started. Definitely update and improve t
 
 You can test your hubot by running the following.
 
+First, make sure that CoffeeScript is installed. The version should be 1.11.1 or less, since version 2 introduces some breaking changes to the current hubot code.
+
+    % npm install --global coffeescript@1.11.1
+
 You can start devict-hubot locally by running:
 
     % bin/hubot
