@@ -21,7 +21,6 @@
     "hubot-rules": "^0.1.0",
     "hubot-scripts": "^2.5.16",
     "hubot-secret-ballot": "0.0.2",
-    "hubot-shipit": "^0.1.1",
     "hubot-slack": "^4.2.1",
     "hubot-slack-reaction": "0.0.3",
     "hubot-youtube": "^0.1.2",
