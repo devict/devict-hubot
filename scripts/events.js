@@ -119,9 +119,9 @@ eventMgr.reset = function() {
 
 module.exports = function(robot) {
   robot.respond(/events/i, function(msg) {
-    var devictURL = 'https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&group_urlname=devICT&photo-host=public&page=20&fields=series&order=time&desc=false&status=upcoming&sig_id=73273692&sig=537d61d321f2fde426c4dac2e1fa4cdace9c6477'
+    var devictURL = 'https://api.meetup.com/2/events?&sign=true&photo-host=public&group_urlname=devICT&limited_events=false&fields=series&status=upcoming&page=20'
 
-    var wwcURL = 'https://api.meetup.com/2/events?offset=0&format=json&limited_events=False&group_urlname=WWCWichita&photo-host=public&page=20&fields=series&order=time&desc=false&status=upcoming&sig_id=73273692&sig=9a2cb1fbe4d6e38fddcb58c9a6d2d76c5812b873'
+    var wwcURL = 'https://api.meetup.com/2/events?&sign=true&photo-host=public&group_urlname=WWCWichita&limited_events=false&fields=series&status=upcoming&page=20'
 
     var meetupRequest = function(group, url) {
       return new Promise(function(resolve, reject) {
