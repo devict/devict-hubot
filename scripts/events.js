@@ -22,6 +22,8 @@ var processTitle = function(title) {
     title = ":books: " + title
   } else if (title === "Game Dev Potluck") {
     title = ":video_game: " + title
+  } else if (title === "Go Users Group") {
+    title = ":gopher: " + title
   } else if (title.startsWith("devICT Presents: ")) {
     title = ":movie_camera: " + title
   }
