@@ -28,8 +28,6 @@ _If you need to focus you can mute the channel with `/mute` or sign out for a wh
 
 *#review-feedback*: Help others or get some help yourself! Constructive criticism only of course :smile:
 
-*#suggestions*: Suggest changes for devICT. These can go in #general too, but they're easier to keep track of here.
-
 <!--split-->
 
 _The rest of these channels are opt-in: you won't be in them by default so you have to join if they sound neat :neature:_
@@ -37,12 +35,12 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 *Languages and Frameworks*
 >These channels are for questions/discussions about a specific programming language or framework. :code:
 
-#batch, #coldfusion, #cplusplus, #css, #dotnet, #elixir, #go, #haskell, #java, #patching, #perl, #ruby, #rust, #shells, #swift, #xamarin
+#batch, #coldfusion, #cplusplus, #dotnet, #elixir, #go, #haskell, #java, #perl, #ruby, #rust
 
 >Some languages spawned off new child channels for specific frameworks/environments/dialects.
 
-- #javascript (#angular, #elm-lang, #lisp, #node, #react-native, #react, #vue)
-- #php (#laravel, #wordpress, #drupal)
+- #javascript (#angular, #lisp, #node, #react, #vue)
+- #php (#laravel, #wordpress)
 - #python (#django)
 
 #database: This one's not about a programming language really but all MySQL, PostgreSQL, Cassandra, MongoDB etc discussions tend to happen here.
@@ -50,14 +48,14 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 <!--split-->
 
 *Web Development*
->We aren't all web developers but enough of us are that we have more than a couple channels about it. Here they are! Note some are duplicated in this guide.
+>We aren't all web developers but enough of us are that we have more than a couple channels about it. Here they are! Note some may be duplicated in this guide.
 
-#css, #design, #front-end, #javascript, #new-to-web-dev, #seo, #web-api
+#design, #front-end, #javascript, #new-to-web-dev, #seo
 
 *Operating Systems / Environments*
 >These channels are about using, developing, or deploying applications for a specific environment.
 
-#aws, #docker, #kubernetes, #linux, #mac, #mobile-dev, #windows, #serverless
+#aws, #containers, #linux, #mac, #mobile-dev, #windows
 
 <!--split-->
 
@@ -65,8 +63,6 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 >These groups connect our community to other groups. :globe_with_meridians:
 
 - #devict-institute: Public communications of the devICT Institute Board of Directors.
-- #outreach: devICT members actively working to spread awareness of our community to others.
-- #devict-to-startup: A linked Slack channel with Startup Wichita's Slack.
 - #laborparty: A place for Labor Party members to chat about LP things.
 - #wwc-public: The public channel for members/allies of Women Who Code Wichita. Ask to join the WWC private channel if you identify as a woman or non-binary.
 - #adastra: A forum for the Ad Astra Tech Alliance
@@ -74,46 +70,46 @@ _The rest of these channels are opt-in: you won't be in them by default so you h
 *Events and Programs*
 >These are focused around recurring events or special projects.
 
-#advent-of-code, #batty, #dev-survey, #functional-works, #hacktoberfest, #hubot, #kansaslinuxfest, #messformakers, #openwichita, #study-hall
+#advent-of-code, #dev-survey, #functional-works, #hacktoberfest, #hubot, #openwichita, #study-hall
 
 <!--split-->
 
 *Tech Concepts*
 >These channels are for more abstract topics that are generally language agnostic.
 
-#ai, #architecture, #blockchain, #computer-science, #cryptography, #cryptocurrency, #datasci, #devops, #floss, #infosec, #networking, #vr-ar-mr-dev, #web-api
+#blockchain, #datasci, #infosec, #networking
 
 *Physical Tech*
 >Discussions at the intersection of code and the physical world. :robot_face:
 
-#hardware, #robots, #iot
+#hardware
 
 *Specific Tools*
 >Some tools have enough fans/users that we end up talking about them often. These channels are generally designed to help you get the most out of those tools.
 
-#emacs, #git, #gitlab, #graphql, #text-editors, #vim
+#emacs, #git, #text-editors, #vim
 
 *How People Work*
 >A loose collection of channels that discuss the methods people use to work or further their careers.
 
-#scrum-user-group, #contracting, #education, #mentorship, #remote-working, #conferences
+#scrum-user-group, #contracting, #mentorship, #remote-working, #conferences
 
 <!--split-->
 
 *Things People Make*
 >Some people make stuff and want to share it! :art:
 
-#blogging, #inmysparetime, #itookapicture
+#inmysparetime, #itookapicture
 
 *Explicitly Non-tech*
 >We don't just talk about computers in here! Our goal is to connect with each other as people. :smile: These channels hold the discussions about non-technical topics that come up often.
 
-#bicycle, #books, #drink, #espanol, #finance, #food, #get-moving, #marketplace, #music, #parenting, #podcasts, #politics, #religion
+#bicycle, #books, #drink, #espanol, #food, #get-moving, #marketplace, #music, #parenting, #politics
 
 *Game Related (Video or Otherwise)*
 >Making games or playing games. All things game-related. :video_game: :game_die:
 
-#dnd, #gamedev, #games, #ictgamejam, #igda, #minecraft
+#dnd, #gamedev, #games, #ictgamejam, #minecraft
 
 *Just for Fun*
 >Some of the more light-hearted channels!
