@@ -23,33 +23,6 @@ var shouldAbort = function(msg) {
 };
 
 module.exports = function(robot) {
-  robot.hear(/\bso good\b/i, function(msg) {
-    if (shouldAbort(msg)) { return; }
-
-    robot.emit('slack.reaction', {
-        message: msg.message,
-        name: "so-good"
-    });
-  });
-
-  robot.hear(/\blook at (this|that|it)\b/i, function(msg) {
-    if (shouldAbort(msg)) { return; }
-
-    robot.emit('slack.reaction', {
-        message: msg.message,
-        name: "look-at-that"
-    });
-  });
-  
-  robot.hear(/\b(neat|nature|neature|aspen)\b/i, function(msg) {
-    if (shouldAbort(msg)) { return; }
-
-    robot.emit('slack.reaction', {
-        message: msg.message,
-        name: "neature"
-    });
-  });
-
   //regex curtesy of Michael Neth -> (yo)?u([^a-zA-Z0-9]| a)?re? welcome
   robot.hear(/\b(yo)?u([^a-zA-Z0-9]| a)?re? welcome\b/i, function(msg) {
     if (shouldAbort(msg)) { return; }
